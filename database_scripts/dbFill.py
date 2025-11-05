@@ -15,6 +15,7 @@ import getopt
 import http.client
 import urllib
 import json
+import os
 from random import randint
 from random import choice
 from datetime import date
@@ -97,8 +98,10 @@ def main(argv):
         userNames.append(str(d['data']['name']))
         userEmails.append(str(d['data']['email']))
 
-    # Open 'tasks.txt' for sample task names
-    f = open('tasks.txt','r')
+    # Open 'tasks.txt' for sample task names (use script's directory)
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    tasks_file = os.path.join(script_dir, 'tasks.txt')
+    f = open(tasks_file, 'r')
     taskNames = f.read().splitlines()
 
     # Loop 'taskCount' number of times
